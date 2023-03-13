@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hwan_sudoku/screens/stage_screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -7,7 +8,6 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.orange,
         title: Text('Hwan\'Sudoku'),
         centerTitle: true,
       ),
@@ -28,7 +28,12 @@ class MainScreen extends StatelessWidget {
                   width: 150,
                   height: 50,
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => StageScreen()),
+                      );
+                    },
                     child: const Text(
                       'New Game',
                       style: TextStyle(fontSize: 24),
