@@ -8,7 +8,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hwan\'Sudoku'),
+        title: const Text('Hwan\'Sudoku'),
         centerTitle: true,
       ),
       body: Padding(
@@ -17,17 +17,23 @@ class MainScreen extends StatelessWidget {
           children: [
             const Center(
               child: Padding(
-                padding: EdgeInsets.fromLTRB(10, 30, 10, 30),
-                child: Text('Hwan\'Sudoku', style: TextStyle(fontSize: 50)),
+                padding: EdgeInsets.symmetric(vertical: 80),
+                child: Text('Hwan\'Sudoku',
+                    style:
+                        TextStyle(fontSize: 60, fontWeight: FontWeight.bold)),
               ),
             ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: SizedBox(
-                  width: 150,
-                  height: 50,
-                  child: OutlinedButton(
+            Container(
+              constraints: const BoxConstraints(
+                minHeight: 50.0,
+                maxWidth: 300.0,
+              ),
+              child: Column(
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(60),
+                    ),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -39,7 +45,7 @@ class MainScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 24),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
           ],
