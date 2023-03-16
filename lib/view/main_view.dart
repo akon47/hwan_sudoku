@@ -1,26 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:hwan_sudoku/screens/stage_screen.dart';
+import 'package:hwan_sudoku/view/stage_view.dart';
+import 'package:provider/provider.dart';
 
-class MainScreen extends StatelessWidget {
-  const MainScreen({Key? key}) : super(key: key);
+import '../view_models/main_view_model.dart';
+
+class MainView extends StatefulWidget {
+  const MainView({Key? key}) : super(key: key);
+
+  @override
+  State<MainView> createState() => _MainViewState();
+}
+
+class _MainViewState extends State<MainView> {
+  late MainViewModel viewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    viewModel = Provider.of<MainViewModel>(context, listen: false);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hwan\'Sudoku'),
+        title: Consumer<MainViewModel>(
+          builder: (_, model, __) => Text(model.title),
+        ),
         centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            const Center(
+            Center(
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 80),
-                child: Text('Hwan\'Sudoku',
-                    style:
-                        TextStyle(fontSize: 60, fontWeight: FontWeight.bold)),
+                padding: const EdgeInsets.symmetric(vertical: 80),
+                child: Consumer<MainViewModel>(
+                  builder: (_, model, __) => Text(model.title,
+                      style: const TextStyle(
+                        fontSize: 50,
+                        fontWeight: FontWeight.bold,
+                      )),
+                ),
               ),
             ),
             Container(
@@ -37,7 +59,9 @@ class MainScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => StageScreen()),
+                        MaterialPageRoute(
+                          builder: (context) => const StageView(),
+                        ),
                       );
                     },
                     child: const Text(
