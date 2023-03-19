@@ -2,10 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../view_models/game_view_model.dart';
+import '../view_models/stage_view_model.dart';
 import 'game_view.dart';
 
-class StageView extends StatelessWidget {
+class StageView extends StatefulWidget {
   const StageView({Key? key}) : super(key: key);
+
+  @override
+  State<StageView> createState() => _StageViewState();
+}
+
+class _StageViewState extends State<StageView> {
+  late StageViewModel viewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    viewModel = Provider.of<StageViewModel>(context, listen: false);
+  }
 
   @override
   Widget build(BuildContext context) {

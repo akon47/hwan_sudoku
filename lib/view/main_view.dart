@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hwan_sudoku/view/stage_view.dart';
 import 'package:provider/provider.dart';
 
+import '../locator.dart';
+import '../repository/common_repository.dart';
 import '../view_models/main_view_model.dart';
+import '../view_models/stage_view_model.dart';
 
 class MainView extends StatefulWidget {
   const MainView({Key? key}) : super(key: key);
@@ -37,11 +40,13 @@ class _MainViewState extends State<MainView> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 80),
                 child: Consumer<MainViewModel>(
-                  builder: (_, model, __) => Text(model.title,
-                      style: const TextStyle(
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold,
-                      )),
+                  builder: (_, model, __) => Text(
+                    model.title,
+                    style: const TextStyle(
+                      fontSize: 50,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -60,7 +65,12 @@ class _MainViewState extends State<MainView> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const StageView(),
+                          builder: (context) => ChangeNotifierProvider(
+                            create: (_) => StageViewModel(
+                              commonRepo: locator<CommonRepository>(),
+                            ),
+                            child: const StageView(),
+                          ),
                         ),
                       );
                     },
