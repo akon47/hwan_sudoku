@@ -65,7 +65,7 @@ class _MainViewState extends State<MainView> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ChangeNotifierProvider(
+                          builder: (_) => ChangeNotifierProvider(
                             create: (_) => StageViewModel(
                               commonRepo: locator<CommonRepository>(),
                             ),

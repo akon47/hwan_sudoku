@@ -12,7 +12,9 @@ void main() {
   runApp(
     MaterialApp(
       home: ChangeNotifierProvider(
-        create: (_) => MainViewModel(commonRepo: locator<CommonRepository>()),
+        create: (_) => MainViewModel(
+          commonRepo: locator<CommonRepository>(),
+        ),
         child: const MainView(),
       ),
       theme: ThemeData(

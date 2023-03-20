@@ -20,7 +20,7 @@ class _StageViewState extends State<StageView> {
     super.initState();
     viewModel = Provider.of<StageViewModel>(context, listen: false);
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,9 +58,9 @@ class _StageButton extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ChangeNotifierProvider(
+              builder: (_) => ChangeNotifierProvider(
                 create: (_) => GameViewModel(stage),
-                child: GameView(stage),
+                child: const GameView(),
               ),
             ),
           );
